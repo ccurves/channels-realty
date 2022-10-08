@@ -1,0 +1,154 @@
+body {
+  background: #30515f;
+  color: #fff;
+  height: 100%;
+  margin: 0;
+  font-family: "Muli", sans-serif;
+}
+
+@keyframes fadeIn {
+  from {
+    top: 20%;
+    opacity: 0;
+  }
+  to {
+    top: 100;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    top: 20%;
+    opacity: 0;
+  }
+  to {
+    top: 100;
+    opacity: 1;
+  }
+}
+
+.topleft {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  animation: fadeIn 1000ms ease;
+  -webkit-animation: fadeIn 1000ms ease;
+  text-align: center;
+}
+
+.logo {
+  width: 200px;
+  margin: 10px;
+}
+
+h1 {
+  font-size: 50px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 0;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.dot {
+  color: #d56c2d;
+}
+
+p {
+  text-align: center;
+  margin: 18px;
+  font-weight: normal;
+}
+
+.icons {
+  text-align: center;
+}
+
+.icons i {
+  color: #30515f;
+  background: #fff;
+  height: 15px;
+  width: 15px;
+  padding: 13px;
+  margin: 0 10px;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  transition: all 200ms ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.icons i:hover,
+.icons i:active {
+  color: #fff;
+  background: none;
+  cursor: pointer !important;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  text-decoration: none;
+}
+
+.wrapper input {
+  background: #fff;
+  color: #30515f;
+  border: 0;
+  outline: none;
+  margin: 0;
+  padding: 9px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.wrapper button {
+  border: 0;
+  padding: 9px 25px;
+  cursor: pointer;
+  background: #d56c2d;
+  color: #fff;
+  transition: all 0.3s ease;
+  outline: none;
+  font-size: 14px;
+  border-radius: 5px;
+  margin: 6px;
+}
+
+@media screen and (max-width: 768px) {
+  .cta {
+    font-size: 10px;
+  }
+
+  .logo {
+    width: 130px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .bottomleft {
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    transform: translate(-37%, -50%);
+    -webkit-transform: translate(-37%, -50%);
+  }
+
+  .logo {
+    width: 130px;
+  }
+}
