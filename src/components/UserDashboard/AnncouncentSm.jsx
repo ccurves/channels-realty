@@ -1,9 +1,16 @@
 import React from "react";
+import img from "../../assets/img/Rectangle.png";
 
 const AnncouncentSm = () => {
   return (
     <div class="col-lg-4 d-none d-lg-block">
-      <div class="card card-centered mb-3 mb-lg-5 card-bg">
+      <div
+        class="card card-centered mb-3 mb-lg-5 "
+        style={{
+          background: `url(${img}) no-repeat`,
+          backgroundSize: "cover",
+        }}
+      >
         <div class="card-body  py-10">
           <div className="">
             <h3 class="text-light">

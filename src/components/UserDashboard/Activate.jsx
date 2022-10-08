@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
-import Logout from "../common/Logout";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { isAuth, updateUser } from "../../helpers/auth";
 import toast from "react-hot-toast";
@@ -11,9 +10,10 @@ const Activate = () => {
   const [valid, setValid] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  let refCode = localStorage.getItem("refCode");
   const [formData, setFormData] = useState({
     username: "",
-    refBy: "",
+    refBy: refCode,
   });
 
   const { username, refBy } = formData;
@@ -69,8 +69,27 @@ const Activate = () => {
     });
   };
 
+  const handleSkip = () => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/user/activate/skip`)
+      .then((res) => {
+        updateUser(res, () => {
+          setFormData({
+            ...formData,
+            username: "",
+            refBy: "",
+          });
+          toast.success("Account activated!");
+        });
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
+
   const confirmPayment = (reference) => {
-    console.log(username, refBy);
     axios
       .post(`${process.env.REACT_APP_API_URL}/user/activate/${reference}`)
       .then((res) => {
@@ -235,31 +254,33 @@ const Activate = () => {
                     </div>
                   </div>
                   <div class="card-footer d-flex align-items-center">
-                    <button
-                      type="button"
-                      class="btn btn-ghost-secondary me-sm-3"
-                    >
-                      <Logout />
-                    </button>
-
                     <div class="ms-auto">
                       {valid ? (
-                        <button
-                          type="button"
-                          onClick={handlePayment}
-                          class="btn btn-primary"
-                        >
-                          {loading ? (
-                            <div
-                              class="spinner-grow spinner-grow-sm text-warning ms-4 me-4"
-                              role="status"
+                        <>
+                          <div class="d-flex justify-content-end gap-3">
+                            <a class="btn btn-white" href="#">
+                              Skip for now
+                            </a>
+                            <button
+                              type="button"
+                              onClick={handlePayment}
+                              class="btn btn-primary"
                             >
-                              <span class="visually-hidden">Loading...</span>
-                            </div>
-                          ) : (
-                            "Activate"
-                          )}
-                        </button>
+                              {loading ? (
+                                <div
+                                  class="spinner-grow spinner-grow-sm text-warning ms-4 me-4"
+                                  role="status"
+                                >
+                                  <span class="visually-hidden">
+                                    Loading...
+                                  </span>
+                                </div>
+                              ) : (
+                                "Activate"
+                              )}
+                            </button>
+                          </div>
+                        </>
                       ) : (
                         <button
                           type="button"

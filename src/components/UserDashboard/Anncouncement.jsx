@@ -1,9 +1,15 @@
 import React from "react";
 
-const Anncouncement = () => {
+const Anncouncement = ({ img }) => {
   return (
     <div class="">
-      <div class="card card-centered mb-3 mb-lg-5 card-bg">
+      <div
+        class="card card-centered mb-3 mb-lg-5 "
+        style={{
+          background: `url(${img}) no-repeat`,
+          backgroundSize: "cover",
+        }}
+      >
         <div class="card-body ">
           <div className="p-lg-6 p-4">
             <h1

@@ -3,11 +3,17 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import GoogleButton from "./GoogleButton";
+// import GoogleButton from "./GoogleButton";
 
 const Signup = () => {
   const [visible, setVisibilty] = useState(false);
   const [loading, setLoading] = useState(false);
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+  let refCode = params.get("refCode");
+  if (refCode !== null) {
+    localStorage.setItem("refCode", refCode);
+  }
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -97,11 +103,11 @@ const Signup = () => {
               </p>
             </div>
 
-            <div class="d-grid mb-4">
+            {/* <div class="d-grid mb-4">
               <GoogleButton />
-            </div>
+            </div> */}
 
-            <span class="divider-center text-muted mb-4">OR</span>
+            <span class="divider-center text-muted mb-4"></span>
           </div>
 
           <label class="form-label" for="fullNameSrEmail">
@@ -222,6 +228,29 @@ const Signup = () => {
               Password does not match the confirm password.
             </span>
           </div>
+
+          {refCode !== null && (
+            <div class="mb-4">
+              <label class="form-label" for="signupSrConfirmPassword">
+                Referred By
+              </label>
+
+              <div
+                class="input-group input-group-merge"
+                data-hs-validation-validate-class
+              >
+                <input
+                  class="js-toggle-password form-control form-control-lg"
+                  type="text"
+                  placeholder="Referred By"
+                  name="refCode"
+                  autocomplete="off"
+                  value={refCode}
+                  readOnly
+                />
+              </div>
+            </div>
+          )}
 
           <div class="form-check mb-4">
             <input
