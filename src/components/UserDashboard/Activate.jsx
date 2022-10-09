@@ -24,7 +24,7 @@ const Activate = () => {
 
   const validateInfo = () => {
     if (username) {
-      if (username.toLowerCase() === refBy.toLowerCase()) {
+      if (username.toLowerCase() === refBy?.toLowerCase()) {
         return setMsg("Invalid! You can't refer yourself");
       }
       axios
@@ -71,7 +71,10 @@ const Activate = () => {
 
   const handleSkip = () => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/user/activate/skip`)
+      .post(`${process.env.REACT_APP_API_URL}/user/modify/${isAuth()._id}`, {
+        username,
+        refBy,
+      })
       .then((res) => {
         updateUser(res, () => {
           setFormData({
@@ -79,7 +82,7 @@ const Activate = () => {
             username: "",
             refBy: "",
           });
-          toast.success("Account activated!");
+          // toast.success("Account activated!");
         });
         window.location.reload();
       })
@@ -99,6 +102,7 @@ const Activate = () => {
             username: "",
             refBy: "",
           });
+          localStorage.removeItem("refCode");
           toast.success("Account activated!");
         });
         window.location.reload();
@@ -258,9 +262,9 @@ const Activate = () => {
                       {valid ? (
                         <>
                           <div class="d-flex justify-content-end gap-3">
-                            <a class="btn btn-white" href="#">
+                            <button class="btn btn-white" onClick={handleSkip}>
                               Skip for now
-                            </a>
+                            </button>
                             <button
                               type="button"
                               onClick={handlePayment}
