@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import AnncouncentSm from "./AnncouncentSm";
 import { getCookie, isAuth, updateUser } from "../../helpers/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 import DropzoneComponent from "../common/DropzoneComponent";
 
-const AffilateApply = () => {
+const AffilateApply = ({ setStep }) => {
   const user = isAuth();
   const [frontFile, setfrontFile] = useState(null);
   const [backFile, setbackFile] = useState(null);
@@ -65,7 +64,7 @@ const AffilateApply = () => {
   };
   return (
     <div className="row">
-      <div className="col-lg-8">
+      <div className="">
         <div class="card">
           <div class="card-header">
             <h2 class="card-title h4">Become an affiliate</h2>
@@ -216,10 +215,14 @@ const AffilateApply = () => {
               </div>
 
               <div class="d-flex justify-content-start d-print-none gap-3">
-                <button class="btn btn-primary text-center" href="">
+                <button type="submit" class="btn btn-primary text-center">
                   Become an affiliate
                 </button>
-                <button class="btn btn-light" href="#">
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  onClick={() => setStep("step1")}
+                >
                   Cancel
                 </button>
               </div>
@@ -227,7 +230,6 @@ const AffilateApply = () => {
           </div>
         </div>
       </div>
-      <AnncouncentSm />
     </div>
   );
 };

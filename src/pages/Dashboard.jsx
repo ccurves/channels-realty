@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import AffilateOverview from "../components/AffilateDashboard/AffilateOverview";
+import Application from "../components/AffilateDashboard/Application";
 import Withdraw from "../components/AffilateDashboard/Withdraw";
 import Activate from "../components/UserDashboard/Activate";
-import AffilateApply from "../components/UserDashboard/AffilateApply";
 import Header from "../components/UserDashboard/Header";
 import Navbar from "../components/UserDashboard/Navbar";
 import Overview from "../components/UserDashboard/Overview";
@@ -47,7 +47,7 @@ const Dashboard = ({ page }) => {
                         ))}
                       {page === "task" && <Task />}
                       {page === "profile" && <Profile />}
-                      {page === "apply" && <AffilateApply />}
+                      {page === "apply" && <Application />}
                       {page === "withdraw" && <Withdraw />}
                     </div>
                   )}
