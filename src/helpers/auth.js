@@ -78,9 +78,9 @@ export const isAuth = () => {
 
 //Update user data in localstorage
 export const updateUser = (response) => {
+  let data = response.data || response.others || response;
   if (window !== "undefined") {
-    let auth = response.data;
-    setLocalStorage("user", auth);
+    setLocalStorage("user", data);
     // localStorage.setItem("user", JSON.stringify(auth));
   }
 };

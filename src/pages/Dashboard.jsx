@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 import AffilateOverview from "../components/AffilateDashboard/AffilateOverview";
 import Application from "../components/AffilateDashboard/Application";
@@ -11,7 +13,7 @@ import PendingReg from "../components/UserDashboard/PendingReg";
 import Profile from "../components/UserDashboard/Profile";
 import Sidebar from "../components/UserDashboard/Sidebar";
 import Task from "../components/UserDashboard/Task";
-import { isAuth } from "../helpers/auth";
+import { getCookie, isAuth, updateUser } from "../helpers/auth";
 
 const Dashboard = ({ page }) => {
   useEffect(() => {

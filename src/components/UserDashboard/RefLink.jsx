@@ -1,8 +1,9 @@
-import { ContentCopyRounded, LandscapeRounded } from "@mui/icons-material";
+import { LandscapeRounded } from "@mui/icons-material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { isAuth } from "../../helpers/auth";
 import ProgressBar from "../common/ProgressBar";
+import RefLinkComponent from "../common/RefLinkComponent";
 
 const RefLink = ({ page }) => {
   return (
@@ -17,37 +18,7 @@ const RefLink = ({ page }) => {
         >
           <small class="text-cap">Your Referral id:</small>
 
-          <div class="input-group">
-            <input
-              id="referralCode"
-              type="text"
-              class="form-control"
-              readonly
-              value={isAuth().refLink}
-            />
-            <div class="input-group-append">
-              <a
-                class="js-clipboard btn btn-white"
-                href=""
-                data-bs-toggle="tooltip"
-                data-bs-placement="right"
-                title="Copy to clipboard"
-                data-hs-clipboard-options='{
-                    "type": "tooltip",
-                    "successText": "Copied!",
-                    "contentTarget": "#referralCode",
-                    "classChangeTarget": "#referralCodeIcon",
-                    "defaultClass": "bi-clipboard",
-                    "successClass": "bi-check"
-                   }'
-              >
-                {/* <i id="referralCodeIcon" class="bi-clipboard"></i> */}
-                <ContentCopyRounded
-                  sx={{ color: "#D56C2D", width: "22px", margin: "0 7px" }}
-                />
-              </a>
-            </div>
-          </div>
+          <RefLinkComponent />
         </div>
         <div class="d-flex align-items-md-center p-lg-3 p-2 mt-3">
           <div class="flex-shrink-0 text-center">

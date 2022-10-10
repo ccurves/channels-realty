@@ -1,4 +1,5 @@
 import React from "react";
+import { isAuth } from "../../helpers/auth";
 import AnncouncentSm from "../UserDashboard/AnncouncentSm";
 import Transcations from "./Transcations";
 import WithdrawModal from "./WithdrawModal";
@@ -19,7 +20,7 @@ const Withdraw = () => {
                     >
                       <h6 class="card-subtitle">Refferal Bouns</h6>
                       <span class="d-block display-5 text-dark mb-3 me-3 mt-3">
-                        NGN27,458.20
+                        NGN{isAuth().wallet.refBouns}
                       </span>
                       <div class="d-flex justify-content-start d-print-none gap-3">
                         <button

@@ -11,7 +11,7 @@ const Task = () => {
   isAuth().refferals.map(
     (user) => user.regStatus === "Completed" && regUsers.push(user)
   );
-  console.log(regUsers);
+
   return (
     <>
       <div class="col-lg-8">

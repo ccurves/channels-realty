@@ -8,6 +8,7 @@ const AffilateApply = ({ setStep }) => {
   const user = isAuth();
   const [frontFile, setfrontFile] = useState(null);
   const [backFile, setbackFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     firstname: user.firstname,
@@ -47,16 +48,16 @@ const AffilateApply = ({ setStep }) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
-          updateUser(res, () => {
+          console.log(res.data.others);
+          updateUser(res.data.others, () => {
             toast.success(res.data.message);
           });
           // setFileUrl(null);
           window.location.reload();
         })
         .catch((err) => {
+          console.log(err);
           toast.error(err.response.data.error);
-          console.log(err.response);
         });
     } else {
       toast.error("Certain fields are missing");
@@ -201,6 +202,8 @@ const AffilateApply = ({ setStep }) => {
                   <DropzoneComponent
                     uploadFor="front"
                     setfrontFile={setfrontFile}
+                    loading={loading}
+                    setLoading={setLoading}
                   />
                 </div>
                 <div className="col-sm-6">
@@ -210,12 +213,18 @@ const AffilateApply = ({ setStep }) => {
                   <DropzoneComponent
                     uploadFor="back"
                     setbackFile={setbackFile}
+                    loading={loading}
+                    setLoading={setLoading}
                   />
                 </div>
               </div>
 
               <div class="d-flex justify-content-start d-print-none gap-3">
-                <button type="submit" class="btn btn-primary text-center">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  class="btn btn-primary text-center"
+                >
                   Become an affiliate
                 </button>
                 <button

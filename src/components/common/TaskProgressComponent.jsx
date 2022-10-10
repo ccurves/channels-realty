@@ -13,20 +13,34 @@ const TaskProgressComponent = ({ sqm, perc }) => {
               <h4 class="card-header-title">{sqm}sqm</h4>
 
               <h4 class="card-header-title" style={{ fontWeight: 400 }}>
-                {getPercent(
-                  isAuth().refferals.length,
-                  process.env.REACT_APP_USER_GOAL / Number(perc)
-                )}
+                {isAuth().role === "affilate" &&
+                  getPercent(
+                    isAuth().refferals.length,
+                    process.env.REACT_APP_AFFILATE_GOAL / Number(perc)
+                  )}
+                {isAuth().role === "user" &&
+                  getPercent(
+                    isAuth().refferals.length,
+                    process.env.REACT_APP_USER_GOAL / Number(perc)
+                  )}
                 %
               </h4>
             </div>
             <div className="row">
               <div className="col-12">
                 <div class="progress rounded-pill" style={{ height: "17px" }}>
-                  <ProgressBar
-                    refferals={isAuth().refferals.length}
-                    goal={process.env.REACT_APP_USER_GOAL / Number(perc)}
-                  />
+                  {isAuth().role === "affilate" && (
+                    <ProgressBar
+                      refferals={isAuth().refferals.length}
+                      goal={process.env.REACT_APP_AFFILATE_GOAL / Number(perc)}
+                    />
+                  )}
+                  {isAuth().role === "user" && (
+                    <ProgressBar
+                      refferals={isAuth().refferals.length}
+                      goal={process.env.REACT_APP_USER_GOAL / Number(perc)}
+                    />
+                  )}
                 </div>
               </div>
             </div>

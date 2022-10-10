@@ -32,8 +32,8 @@ const ActivateButton = () => {
       .then((res) => {
         updateUser(res, () => {
           toast.success("Account activated!");
-          localStorage.removeItem("refCode");
         });
+        localStorage.removeItem("refCode");
         window.location.reload();
       })
       .catch((err) => {

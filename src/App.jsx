@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EmailSent from "./components/Auth/EmailSent";
 import EmailVerify from "./components/Auth/EmailVerify";
 import GoogleSuccess from "./components/Auth/GoogleSuccess";
+import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 // import ComingSoon from "./pages/ComingSoon";
 import Dashboard from "./pages/Dashboard";
@@ -33,6 +34,11 @@ function App() {
           <Route
             path="/affilate/withdraw"
             element={<Dashboard page="withdraw" />}
+          />
+          <Route path="/admin" element={<Admin page="index" />} />
+          <Route
+            path="/admin/affilate-requests"
+            element={<Admin page="aff-req" />}
           />
           <Route path="*" element={<Error404 />} />
           <Route path="/auth/failed" element={<Error500 />} />

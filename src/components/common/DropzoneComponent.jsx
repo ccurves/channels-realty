@@ -1,9 +1,15 @@
 import { CloudUploadRounded } from "@mui/icons-material";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 import { useDropzone } from "react-dropzone";
 
-const DropzoneComponent = ({ setfrontFile, setbackFile, uploadFor }) => {
+const DropzoneComponent = ({
+  setfrontFile,
+  setbackFile,
+  uploadFor,
+  setLoading,
+  loading,
+}) => {
   const baseStyle = {
     display: "flex",
     flexDirection: "column",
@@ -31,7 +37,6 @@ const DropzoneComponent = ({ setfrontFile, setbackFile, uploadFor }) => {
   };
 
   const [files, setFiles] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const onDrop = useCallback(async (acceptedFiles) => {
     // setFiles(

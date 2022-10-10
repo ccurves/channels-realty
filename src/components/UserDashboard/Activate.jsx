@@ -84,6 +84,7 @@ const Activate = () => {
           });
           // toast.success("Account activated!");
         });
+        localStorage.removeItem("refCode");
         window.location.reload();
       })
       .catch((err) => {
@@ -102,9 +103,10 @@ const Activate = () => {
             username: "",
             refBy: "",
           });
-          localStorage.removeItem("refCode");
+
           toast.success("Account activated!");
         });
+        localStorage.removeItem("refCode");
         window.location.reload();
       })
       .catch((err) => {

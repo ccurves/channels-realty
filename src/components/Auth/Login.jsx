@@ -51,9 +51,7 @@ const Login = () => {
           // isAuth && navigate("/");
 
           toast.success(`Hey ${isAuth().firstname}, Welcome back!`);
-          isAuth() && isAuth().role === "admin"
-            ? navigate("/admin")
-            : navigate("/");
+          isAuth() && isAuth().isAdmin ? navigate("/admin") : navigate("/");
 
           setLoading(false);
         })

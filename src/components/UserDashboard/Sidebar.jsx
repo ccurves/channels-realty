@@ -70,26 +70,45 @@ const Sidebar = ({ page }) => {
                     </span>
                     <div class=" ms-auto">
                       <div class="flex-shrink-0">
-                        <Verified sx={{ color: "#D56C2D", width: "22px" }} />
+                        {isAuth().affilate?.status === "Verified" && (
+                          <Verified sx={{ color: "#D56C2D", width: "22px" }} />
+                        )}
                       </div>
                     </div>
                   </div>
 
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <div class="progress flex-grow-1">
-                      <div
-                        class="progress-bar bg-primary"
-                        role="progressbar"
-                        style={{
-                          width: `${getPercent(
-                            isAuth().refferals.length,
-                            process.env.REACT_APP_USER_GOAL
-                          )}%`,
-                        }}
-                        aria-valuenow={isAuth().refferals.length}
-                        aria-valuemin="0"
-                        aria-valuemax={process.env.REACT_APP_USER_GOAL}
-                      ></div>
+                      {isAuth().role === "affilate" && (
+                        <div
+                          class="progress-bar bg-primary"
+                          role="progressbar"
+                          style={{
+                            width: `${getPercent(
+                              isAuth().refferals.length,
+                              process.env.REACT_APP_AFFILATE_GOAL
+                            )}%`,
+                          }}
+                          aria-valuenow={isAuth().refferals.length}
+                          aria-valuemin="0"
+                          aria-valuemax={process.env.REACT_APP_AFFILATE_GOAL}
+                        ></div>
+                      )}
+                      {isAuth().role === "user" && (
+                        <div
+                          class="progress-bar bg-primary"
+                          role="progressbar"
+                          style={{
+                            width: `${getPercent(
+                              isAuth().refferals.length,
+                              process.env.REACT_APP_USER_GOAL
+                            )}%`,
+                          }}
+                          aria-valuenow={isAuth().refferals.length}
+                          aria-valuemin="0"
+                          aria-valuemax={process.env.REACT_APP_USER_GOAL}
+                        ></div>
+                      )}
                     </div>
                   </div>
                 </div>
