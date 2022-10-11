@@ -1,8 +1,9 @@
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import EmailSent from "./components/Auth/EmailSent";
 import EmailVerify from "./components/Auth/EmailVerify";
 import GoogleSuccess from "./components/Auth/GoogleSuccess";
+import { isAuth } from "./helpers/auth";
 import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 // import ComingSoon from "./pages/ComingSoon";

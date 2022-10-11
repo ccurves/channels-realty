@@ -24,6 +24,8 @@ const Dashboard = ({ page }) => {
     <>
       {!isAuth() ? (
         <Navigate to="/login" />
+      ) : isAuth() && isAuth().isAdmin ? (
+        <Navigate to="/admin" />
       ) : (
         <>
           {isAuth().regStatus === "Not processed" ? (
