@@ -8,12 +8,12 @@ const SideCard = () => {
         <div class="card-body bg-light py-10">
           <div className="text-center">
             <h3 class=" ">
-              Earn 6k per referral if you become an affiliate, click this button
-              to become an affiliate.
+              Earn 6k per referral if you become an Influencer, click this
+              button to become an Influencer.
             </h3>
             <Link to="/affilate/apply">
               <button className="btn btn-outline-primary btn-light mt-4">
-                Become an affiliate
+                Become an Influencer
               </button>
             </Link>
           </div>
