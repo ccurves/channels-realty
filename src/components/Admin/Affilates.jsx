@@ -157,7 +157,7 @@ const Affilates = () => {
         />
       </div>
       {affilates.map((affilate) => (
-        <UserModal affilate={affilate} />
+        <UserModal affilate={affilate} key={affilate._id} />
       ))}
     </div>
   );

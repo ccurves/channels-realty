@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import icon from "../../assets/illustrations/oc-hi-five.svg";
 
 const PendingVerify = () => {
@@ -18,9 +19,11 @@ const PendingVerify = () => {
             Your application has been submitted and awaiting review from the
             commitee
           </p>
-          <button type="button" class="btn btn-primary">
-            Back to home
-          </button>
+          <Link to="/">
+            <button type="button" class="btn btn-primary">
+              Back to home
+            </button>
+          </Link>
         </div>
       </div>
     </div>

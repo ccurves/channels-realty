@@ -29,6 +29,7 @@ const AffilateApply = ({ setStep }) => {
   };
 
   const handleSubmit = (e) => {
+    setLoading(true);
     const token = getCookie("token");
     e.preventDefault();
     if (frontFile && backFile && user) {
@@ -53,14 +54,17 @@ const AffilateApply = ({ setStep }) => {
             toast.success(res.data.message);
           });
           // setFileUrl(null);
+          setLoading(false);
           window.location.reload();
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
           toast.error(err.response.data.error);
         });
     } else {
       toast.error("Certain fields are missing");
+      setLoading(false);
     }
   };
   return (
