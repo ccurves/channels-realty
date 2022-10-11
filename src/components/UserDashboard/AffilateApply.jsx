@@ -188,6 +188,12 @@ const AffilateApply = ({ setStep }) => {
                       >
                         NIN
                       </option>
+                      <option
+                        value="International Passport"
+                        data-option-template='<div class="d-flex align-items-start"><div class="flex-shrink-0"><i class="bi-lock"></i></div><div class="flex-grow-1 ms-2"><span class="d-block fw-semibold">Only you</span><span class="tom-select-custom-hide small">Only visible to you.</span></div></div>'
+                      >
+                        International Passport
+                      </option>
                     </select>
                   </div>
                 </div>

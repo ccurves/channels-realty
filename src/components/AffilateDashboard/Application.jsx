@@ -9,9 +9,7 @@ import StepNav from "./Steps/StepNav";
 
 const Application = () => {
   const [step, setStep] = useState("step1");
-  const [msg, setMsg] = useState(
-    `Application Rejected! ${isAuth().affilate?.rejectCause}`
-  );
+  const [msg, setMsg] = useState(isAuth().affilate?.rejectCause);
 
   return (
     <div className="row justify-content-lg-center">
@@ -27,7 +25,7 @@ const Application = () => {
           }
           role="alert"
         >
-          {msg}
+          {`Application Rejected! ${msg}`}
           <button
             type="button"
             class="btn-close"
