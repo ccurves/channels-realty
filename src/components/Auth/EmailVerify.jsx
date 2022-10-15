@@ -46,9 +46,15 @@ const EmailVerify = () => {
                 <h4>{error}</h4>
 
                 <div class="mt-4 mb-3">
-                  <a class="btn btn-primary" href="/sign-up">
-                    Sign up
-                  </a>
+                  {error === "Email already verified" ? (
+                    <a class="btn btn-primary" href="/login">
+                      Sign in
+                    </a>
+                  ) : (
+                    <a class="btn btn-primary" href="/sign-up">
+                      Sign up
+                    </a>
+                  )}
                 </div>
               </>
             ) : (
