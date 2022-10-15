@@ -13,17 +13,19 @@ const TaskProgressComponent = ({ sqm, perc }) => {
               <h4 class="card-header-title">{sqm}sqm</h4>
 
               <h4 class="card-header-title" style={{ fontWeight: 400 }}>
-                {isAuth().role === "affilate" &&
+                {/* {isAuth().role === "affilate" &&
                   getPercent(
                     isAuth().refferals.length,
                     process.env.REACT_APP_AFFILATE_GOAL / Number(perc)
-                  )}
-                {isAuth().role === "user" &&
+                  )} */}
+                {/* {isAuth().role === "user" &&
                   getPercent(
                     isAuth().refferals.length,
                     process.env.REACT_APP_USER_GOAL / Number(perc)
-                  )}
-                %
+                  )} */}
+                {isAuth().refferals.length +
+                  "/" +
+                  process.env.REACT_APP_USER_GOAL / Number(perc)}
               </h4>
             </div>
             <div className="row">
@@ -48,7 +50,18 @@ const TaskProgressComponent = ({ sqm, perc }) => {
 
           <div className="col-4 ">
             {" "}
-            <button class="btn btn-primary">Claim</button>
+            {isAuth().refferals.length ===
+            process.env.REACT_APP_USER_GOAL / Number(perc) ? (
+              <button class="btn btn-primary pe-lg-7 ps-lg-7">Claim</button>
+            ) : (
+              <button
+                class="btn btn-outline-primary pe-lg-7 ps-lg-7"
+                disabled
+                style={{ border: "1px solid #d56c2d" }}
+              >
+                Claim
+              </button>
+            )}
           </div>
         </div>
       </div>
