@@ -8,7 +8,7 @@ const GoogleSuccess = () => {
 
   useEffect(() => {
     const getUser = () => {
-      fetch(`${process.env.REACT_APP_API_URL}/auth//login/success`, {
+      fetch(`${process.env.REACT_APP_API_URL}/auth/login/success`, {
         method: "GET",
         credentials: "include",
         headers: {
