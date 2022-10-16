@@ -13,19 +13,14 @@ const TaskProgressComponent = ({ sqm, perc }) => {
               <h4 class="card-header-title">{sqm}sqm</h4>
 
               <h4 class="card-header-title" style={{ fontWeight: 400 }}>
-                {/* {isAuth().role === "affilate" &&
-                  getPercent(
-                    isAuth().refferals.length,
-                    process.env.REACT_APP_AFFILATE_GOAL / Number(perc)
-                  )} */}
-                {/* {isAuth().role === "user" &&
-                  getPercent(
-                    isAuth().refferals.length,
-                    process.env.REACT_APP_USER_GOAL / Number(perc)
-                  )} */}
-                {isAuth().refferals.length +
-                  "/" +
-                  process.env.REACT_APP_USER_GOAL / Number(perc)}
+                {isAuth().role === "affilate" &&
+                  isAuth().refferals.length +
+                    "/" +
+                    process.env.REACT_APP_AFFILATE_GOAL / Number(perc)}
+                {isAuth().role === "user" &&
+                  isAuth().refferals.length +
+                    "/" +
+                    process.env.REACT_APP_USER_GOAL / Number(perc)}
               </h4>
             </div>
             <div className="row">
