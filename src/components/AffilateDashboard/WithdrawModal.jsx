@@ -1,6 +1,103 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { getCookie, isAuth } from "../../helpers/auth";
 
 const WithdrawModal = () => {
+  const [amount, setAmount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    acctName: "",
+    acctNum: "",
+    bank: "",
+  });
+  const { acctName, acctNum, bank } = formData;
+  const authToken = getCookie("token");
+
+  const handleChange = (text) => (e) => {
+    setFormData({ ...formData, [text]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const authToken = getCookie("token");
+
+    if (amount !== 0 && acctName && acctNum && bank) {
+      axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/transaction/withdraw`,
+          {
+            userId: isAuth()._id,
+            amount,
+            acctName,
+            type: "Withdrawal",
+            bank,
+            acctNum,
+          },
+          {
+            headers: {
+              token: authToken,
+            },
+          }
+        )
+        .then((res) => {
+          setFormData({
+            ...formData,
+            acctName: "",
+            acctNum: "",
+            bank: "",
+            amount: 0,
+          });
+          toast.success(res.data.message);
+
+          // window.location.reload();
+        })
+        .catch((err) => {
+          toast.error(err.response.data.error);
+        });
+    } else {
+      toast.error("Please fill all fields");
+    }
+  };
+
+  const verifyNum = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    if (acctNum && bank) {
+      axios
+        .get(
+          `https://api.paystack.co/bank/resolve?account_number=${acctNum}&bank_code=${bank}`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+            },
+          }
+        )
+        .then((res) => {
+          setFormData({
+            ...formData,
+            acctName: res.data.data.account_name,
+          });
+          setLoading(false);
+
+          // toast.success("Account Number is Valid.");
+        })
+        .catch((error) => {
+          if (error.response) {
+            if (error.response.data) {
+              if (error.response.data.message) {
+                setLoading(false);
+                toast.error("Unable to find account");
+              }
+            }
+          }
+        });
+    } else {
+      toast.error("Please fill all fields");
+    }
+  };
+
   return (
     <div
       class="modal fade"
@@ -25,23 +122,24 @@ const WithdrawModal = () => {
 
           <div class="modal-body">
             <form>
-              <div class="row mb-4">
-                <label for="emailLabel" class=" form-label">
-                  Account Name
-                </label>
+              {acctName !== "" && (
+                <div class="row mb-4">
+                  <label for="emailLabel" class=" form-label">
+                    Account Name
+                  </label>
 
-                <div class="col-sm-12">
-                  <input
-                    type="email"
-                    class="form-control "
-                    name="email"
-                    id="emailLabel"
-                    placeholder="Enter account name"
-                    required
-                  />
+                  <div class="col-sm-12">
+                    <input
+                      type="email"
+                      class="form-control "
+                      name="email"
+                      id="emailLabel"
+                      placeholder="Enter account name"
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-
+              )}
               <div class="row mb-4">
                 <label for="phoneLabel" class=" form-label">
                   Account Number
@@ -51,14 +149,14 @@ const WithdrawModal = () => {
                   <input
                     type="text"
                     class="js-input-mask form-control"
-                    name="phone"
+                    name="acctNum"
                     id="emailLabel"
                     placeholder="Enter account number"
+                    onChange={handleChange("acctNum")}
                     required
                   />
                 </div>
               </div>
-
               <div class="row mb-4">
                 <label for="phoneLabel" class="form-label">
                   Bank
@@ -70,6 +168,7 @@ const WithdrawModal = () => {
                       name="bank"
                       class="js-select form-select"
                       data-placeholder="Bank"
+                      onChange={handleChange("bank")}
                     >
                       <option value=""></option>
                       <option value="044">Access Bank</option>
@@ -99,6 +198,11 @@ const WithdrawModal = () => {
                       <option value="215">Unity Bank</option>
                       <option value="035">Wema Bank</option>
                       <option value="057">Zenith Bank</option>
+                      {/* {banks.map((bank) => (
+                        <option key={bank.id} value={bank.code}>
+                          {bank.name}
+                        </option>
+                      ))} */}
                     </select>
                   </div>
                 </div>
@@ -109,7 +213,13 @@ const WithdrawModal = () => {
           <div class="modal-footer">
             <div class="d-flex justify-content-start d-print-none gap-3">
               <button class="btn btn-primary text-center">Place request</button>
-              <button class="btn btn-light">Cancel</button>
+              <button
+                class="btn btn-light"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>

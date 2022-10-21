@@ -1,6 +1,5 @@
 import React from "react";
 import { isAuth } from "../../helpers/auth";
-import { getPercent } from "../../helpers/utilities";
 import ProgressBar from "./ProgressBar";
 
 const TaskProgressComponent = ({ sqm, perc }) => {
