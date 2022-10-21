@@ -21,6 +21,7 @@ const GoogleSuccess = () => {
           throw new Error("authentication has been failed!");
         })
         .then((resObject) => {
+          console.log(resObject);
           authenticate(resObject, () => {
             isAuth && navigate("/");
           });
