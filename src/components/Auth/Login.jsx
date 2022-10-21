@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import GoogleButton from "./GoogleButton";
+// import GoogleButton from "./GoogleButton";
 import { authenticate, isAuth } from "../../helpers/auth";
 import axios from "axios";
 import { VisibilityOffRounded, VisibilityRounded } from "@mui/icons-material";
@@ -87,10 +87,10 @@ const Login = () => {
                 </Link>
               </p>
             </div>
-
+            {/* 
             <div class="d-grid mb-4">
               <GoogleButton />
-            </div>
+            </div> */}
 
             <span class="divider-center text-muted mb-4"></span>
           </div>
