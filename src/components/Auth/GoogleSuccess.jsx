@@ -13,11 +13,6 @@ const GoogleSuccess = () => {
         .get(`${process.env.REACT_APP_API_URL}/auth/login/success`, {
           // mode: "cors",
           withCredentials: true,
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
         })
         .then((res) => {
           console.log(res);
