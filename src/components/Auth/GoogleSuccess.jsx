@@ -38,9 +38,10 @@ const GoogleSuccess = () => {
           throw new Error("authentication has been failed!");
         })
         .then((resObject) => {
-          authenticate(resObject, () => {
-            isAuth && navigate("/");
-          });
+          console.log(resObject);
+          // authenticate(resObject, () => {
+          //   isAuth && navigate("/");
+          // });
         })
         .catch((err) => {
           console.log(err);
