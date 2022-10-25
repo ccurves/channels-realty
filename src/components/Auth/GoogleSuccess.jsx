@@ -11,6 +11,7 @@ const GoogleSuccess = () => {
     const getUser = () => {
       axios
         .get(`${process.env.REACT_APP_API_URL}/auth/login/success`, {
+          mode: "no-cors",
           withCredentials: true,
           headers: {
             Accept: "application/json",
@@ -19,9 +20,9 @@ const GoogleSuccess = () => {
         })
         .then((res) => {
           console.log(res);
-          authenticate(res.data, () => {
-            isAuth && navigate("/");
-          });
+          // authenticate(res.data, () => {
+          //   isAuth && navigate("/");
+          // });
         })
         .catch((err) => {
           console.log(err);
