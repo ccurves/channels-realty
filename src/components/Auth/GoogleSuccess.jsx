@@ -19,6 +19,9 @@ const GoogleSuccess = () => {
         })
         .then((res) => {
           console.log(res);
+          authenticate(res.data, () => {
+            isAuth && navigate("/");
+          });
         })
         .catch((err) => {
           console.log(err);
