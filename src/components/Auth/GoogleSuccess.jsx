@@ -11,7 +11,7 @@ const GoogleSuccess = () => {
     const getUser = () => {
       axios
         .get(`${process.env.REACT_APP_API_URL}/auth/login/success`, {
-          mode: "no-cors",
+          mode: "cors",
           withCredentials: true,
           headers: {
             Accept: "application/json",
