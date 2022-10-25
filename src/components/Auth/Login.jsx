@@ -87,14 +87,10 @@ const Login = () => {
                 </Link>
               </p>
             </div>
-<<<<<<< HEAD
-            {/* 
-=======
 
->>>>>>> main
-            <div class="d-grid mb-4">
+            {/* <div class="d-grid mb-4">
               <GoogleButton />
-            </div>
+            </div> */}
 
             <span class="divider-center text-muted mb-4"></span>
           </div>
