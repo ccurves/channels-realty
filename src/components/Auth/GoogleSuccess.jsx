@@ -27,7 +27,8 @@ const GoogleSuccess = () => {
 
       fetch(`${process.env.REACT_APP_API_URL}/auth/login/success`, {
         method: "GET",
-        credentials: "include",
+        // credentials: "include",
+        credentials: "same-origin",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
