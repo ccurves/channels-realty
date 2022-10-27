@@ -24,7 +24,7 @@ const GoogleSuccess = () => {
       //     console.log(err);
       //     // setError(err.response.data.errors);
       //   });
-      console.log(document.cookie);
+      console.log(window.document.cookie);
 
       fetch(`${process.env.REACT_APP_API_URL}/auth/login/success`, {
         method: "GET",
@@ -33,9 +33,8 @@ const GoogleSuccess = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Cookie:
-            "session=eyJwYXNzcG9ydCI6eyJ1c2VyIjp7Im90aGVycyI6eyJyZXNldFBhc3N3b3JkTGluayI6e30sIl9pZCI6IjYzNGFiZjJjYzYyNDBkY2MzYzFiODZmYiIsImZpcnN0bmFtZSI6IlNpbW9uIiwibGFzdG5hbWUiOiJGcm9zdCIsImVtYWlsIjoic2ltb25mcm9zdDkxNkBnbWFpbC5jb20iLCJyZWdTdGF0dXMiOiJOb3QgcHJvY2Vzc2VkIiwidmVyaWZpZWQiOmZhbHNlLCJyb2xlIjoidXNlciIsImlzQWRtaW4iOmZhbHNlLCJyZWZmZXJhbHMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTEwLTE1VDE0OjA5OjQ4LjMxMloiLCJ1cGRhdGVkQXQiOiIyMDIyLTEwLTE1VDE0OjA5OjQ4LjMxMloiLCJfX3YiOjB9LCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpmYVdRaU9pSTJNelJoWW1ZeVkyTTJNalF3WkdOak0yTXhZamcyWm1JaUxDSnBZWFFpT2pFMk5qWTRPVFk0TXpFc0ltVjRjQ0k2TVRZMk56VXdNVFl6TVgwLjNreGNYM3RzV0Z4aE9RYzc0TXQwMlN0cHd5SFZ1ZlctQVJvUmVYTXlGRUkifX19; session.sig=j3OCC6RoCDUXn2xawe_33-QEJ",
         },
+        // Cookie:"session=eyJwYXNzcG9ydCI6eyJ1c2VyIjp7Im90aGVycyI6eyJyZXNldFBhc3N3b3JkTGluayI6e30sIl9pZCI6IjYzNGFiZjJjYzYyNDBkY2MzYzFiODZmYiIsImZpcnN0bmFtZSI6IlNpbW9uIiwibGFzdG5hbWUiOiJGcm9zdCIsImVtYWlsIjoic2ltb25mcm9zdDkxNkBnbWFpbC5jb20iLCJyZWdTdGF0dXMiOiJOb3QgcHJvY2Vzc2VkIiwidmVyaWZpZWQiOmZhbHNlLCJyb2xlIjoidXNlciIsImlzQWRtaW4iOmZhbHNlLCJyZWZmZXJhbHMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTEwLTE1VDE0OjA5OjQ4LjMxMloiLCJ1cGRhdGVkQXQiOiIyMDIyLTEwLTE1VDE0OjA5OjQ4LjMxMloiLCJfX3YiOjB9LCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpmYVdRaU9pSTJNelJoWW1ZeVkyTTJNalF3WkdOak0yTXhZamcyWm1JaUxDSnBZWFFpT2pFMk5qWTRPVFk0TXpFc0ltVjRjQ0k2TVRZMk56VXdNVFl6TVgwLjNreGNYM3RzV0Z4aE9RYzc0TXQwMlN0cHd5SFZ1ZlctQVJvUmVYTXlGRUkifX19; session.sig=j3OCC6RoCDUXn2xawe_33-QEJ",
       })
         .then((response) => {
           if (response.status === 200) return response.json();
