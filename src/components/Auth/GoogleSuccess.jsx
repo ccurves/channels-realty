@@ -34,9 +34,7 @@ const GoogleSuccess = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-
-        cookie:
-          "session=eyJwYXNzcG9ydCI6eyJ1c2VyIjp7Im90aGVycyI6eyJyZXNldFBhc3N3b3JkTGluayI6e30sIl9pZCI6IjYzNGFiZjJjYzYyNDBkY2MzYzFiODZmYiIsImZpcnN0bmFtZSI6IlNpbW9uIiwibGFzdG5hbWUiOiJGcm9zdCIsImVtYWlsIjoic2ltb25mcm9zdDkxNkBnbWFpbC5jb20iLCJyZWdTdGF0dXMiOiJOb3QgcHJvY2Vzc2VkIiwidmVyaWZpZWQiOmZhbHNlLCJyb2xlIjoidXNlciIsImlzQWRtaW4iOmZhbHNlLCJyZWZmZXJhbHMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTEwLTE1VDE0OjA5OjQ4LjMxMloiLCJ1cGRhdGVkQXQiOiIyMDIyLTEwLTE1VDE0OjA5OjQ4LjMxMloiLCJfX3YiOjB9LCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpmYVdRaU9pSTJNelJoWW1ZeVkyTTJNalF3WkdOak0yTXhZamcyWm1JaUxDSnBZWFFpT2pFMk5qWTVNRGN5T1RFc0ltVjRjQ0k2TVRZMk56VXhNakE1TVgwLmtzNEUzMi1qaDZVTUtwTFAyY0x4MGc2dFlPekgxdkVFd29vRUx2bGFDQVkifX19; session.sig=-tKjM3lsjleIMcjnfKJgs6qt59w",
+        Cookie: "user=Bob; age=28; csrftoken=u12t4o8tb9ee73 ",
       })
         .then((response) => {
           if (response.status === 200) return response.json();
