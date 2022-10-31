@@ -1,16 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { withdrawNav } from "../../data";
 import { getCookie, isAuth } from "../../helpers/auth";
+import StepNav from "../common/StepNav";
+import Actions from "./withdrawlSteps/Actions";
+import Step1 from "./withdrawlSteps/Step1";
+import Step2 from "./withdrawlSteps/Step2";
 
 const WithdrawModal = () => {
   const [amount, setAmount] = useState(0);
+  const [balance, setBalance] = useState("");
+  const [step, setStep] = useState("step1");
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     acctName: "",
     acctNum: "",
     bank: "",
   });
+
   const { acctName, acctNum, bank } = formData;
   const authToken = getCookie("token");
 
@@ -18,9 +26,24 @@ const WithdrawModal = () => {
     setFormData({ ...formData, [text]: e.target.value });
   };
 
+  const checkBalance = (e) => {
+    let value = e.target.value;
+    const re = /^[0-9\b]+$/;
+
+    if (value <= 0 || value === "" || !re.test(value)) {
+      setBalance("invalid");
+    } else {
+      if (isAuth().wallet.refBouns < value) {
+        setBalance("insuffcient");
+      } else {
+        setBalance("");
+        setAmount(value);
+      }
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const authToken = getCookie("token");
 
     if (amount !== 0 && acctName && acctNum && bank) {
       axios
@@ -70,7 +93,7 @@ const WithdrawModal = () => {
           `https://api.paystack.co/bank/resolve?account_number=${acctNum}&bank_code=${bank}`,
           {
             headers: {
-              Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
+              Authorization: `Bearer ${process.env.REACT_APP_PAYSTACK_SECRET_KEY}`,
             },
           }
         )
@@ -80,8 +103,7 @@ const WithdrawModal = () => {
             acctName: res.data.data.account_name,
           });
           setLoading(false);
-
-          // toast.success("Account Number is Valid.");
+          toast.success("Account Number is Valid.");
         })
         .catch((error) => {
           if (error.response) {
@@ -95,6 +117,7 @@ const WithdrawModal = () => {
         });
     } else {
       toast.error("Please fill all fields");
+      setLoading(false);
     }
   };
 
@@ -121,106 +144,16 @@ const WithdrawModal = () => {
           </div>
 
           <div class="modal-body">
-            <form>
-              {acctName !== "" && (
-                <div class="row mb-4">
-                  <label for="emailLabel" class=" form-label">
-                    Account Name
-                  </label>
+            <StepNav data={withdrawNav} step={step} setStep={setStep} />
 
-                  <div class="col-sm-12">
-                    <input
-                      type="email"
-                      class="form-control "
-                      name="email"
-                      id="emailLabel"
-                      placeholder="Enter account name"
-                      required
-                    />
-                  </div>
-                </div>
-              )}
-              <div class="row mb-4">
-                <label for="phoneLabel" class=" form-label">
-                  Account Number
-                </label>
-
-                <div class="col-sm-12">
-                  <input
-                    type="text"
-                    class="js-input-mask form-control"
-                    name="acctNum"
-                    id="emailLabel"
-                    placeholder="Enter account number"
-                    onChange={handleChange("acctNum")}
-                    required
-                  />
-                </div>
-              </div>
-              <div class="row mb-4">
-                <label for="phoneLabel" class="form-label">
-                  Bank
-                </label>
-
-                <div class="col-sm-12">
-                  <div class="tom-select-custom">
-                    <select
-                      name="bank"
-                      class="js-select form-select"
-                      data-placeholder="Bank"
-                      onChange={handleChange("bank")}
-                    >
-                      <option value=""></option>
-                      <option value="044">Access Bank</option>
-                      <option value="063">Access Bank (Diamond)</option>
-                      <option value="035A">ALAT by WEMA</option>
-                      <option value="401">ASO Savings and Loans</option>
-                      <option value="023">Citibank Nigeria</option>
-                      <option value="050">Ecobank Nigeria</option>
-                      <option value="562">Ekondo Microfinance Bank</option>
-                      <option value="070">Fidelity Bank</option>
-                      <option value="011">First Bank of Nigeria</option>
-                      <option value="214">First City Monument Bank</option>
-                      <option value="058">Guaranty Trust Bank</option>
-                      <option value="030">Heritage Bank</option>
-                      <option value="301">Jaiz Bank</option>
-                      <option value="082">Keystone Bank</option>
-                      <option value="50211">Kuda Bank</option>
-                      <option value="526">Parallex Bank</option>
-                      <option value="076">Polaris Bank</option>
-                      <option value="101">Providus Bank</option>
-                      <option value="221">Stanbic IBTC Bank</option>
-                      <option value="068">Standard Chartered Bank</option>
-                      <option value="232">Sterling Bank</option>
-                      <option value="100">Suntrust Bank</option>
-                      <option value="032">Union Bank of Nigeria</option>
-                      <option value="033">United Bank For Africa</option>
-                      <option value="215">Unity Bank</option>
-                      <option value="035">Wema Bank</option>
-                      <option value="057">Zenith Bank</option>
-                      {/* {banks.map((bank) => (
-                        <option key={bank.id} value={bank.code}>
-                          {bank.name}
-                        </option>
-                      ))} */}
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </form>
+            {step === "step1" && <Step1 />}
+            {step === "step2" && (
+              <Step2 acctName={acctName} handleChange={handleChange} />
+            )}
           </div>
 
           <div class="modal-footer">
-            <div class="d-flex justify-content-start d-print-none gap-3">
-              <button class="btn btn-primary text-center">Place request</button>
-              <button
-                class="btn btn-light"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
-                Cancel
-              </button>
-            </div>
+            <Actions loading={loading} verifyNum={verifyNum} />
           </div>
         </div>
       </div>
