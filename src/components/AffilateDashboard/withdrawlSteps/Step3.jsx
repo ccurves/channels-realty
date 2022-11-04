@@ -1,26 +1,42 @@
 import React from "react";
 
-const Step2 = ({ acctName, handleChange, acctNum, bank }) => {
+const Step3 = ({ acctName, acctNum, bank, amount, handleSubmit }) => {
   return (
-    <div>
-      {acctName !== "" && (
-        <div class="row mb-4">
-          <label for="emailLabel" class=" form-label">
-            Account Name
-          </label>
+    <form onSubmit={handleSubmit}>
+      <div class="row mb-4">
+        <label for="emailLabel" class=" form-label">
+          Amount
+        </label>
 
-          <div class="col-sm-12">
-            <input
-              type="email"
-              class="form-control "
-              name="email"
-              id="emailLabel"
-              placeholder={acctName}
-              required
-            />
-          </div>
+        <div class="col-sm-12">
+          <input
+            type="email"
+            class="form-control "
+            name="email"
+            id="emailLabel"
+            value={amount}
+            readOnly
+          />
         </div>
-      )}
+      </div>
+
+      <div class="row mb-4">
+        <label for="emailLabel" class=" form-label">
+          Account Name
+        </label>
+
+        <div class="col-sm-12">
+          <input
+            type="email"
+            class="form-control "
+            name="email"
+            id="emailLabel"
+            value={acctName}
+            readOnly
+          />
+        </div>
+      </div>
+
       <div class="row mb-4">
         <label for="phoneLabel" class=" form-label">
           Account Number
@@ -32,12 +48,13 @@ const Step2 = ({ acctName, handleChange, acctNum, bank }) => {
             class="js-input-mask form-control"
             name="acctNum"
             id="emailLabel"
-            placeholder={acctNum || "Enter account number"}
-            onChange={handleChange("acctNum")}
-            required
+            placeholder="Enter account number"
+            value={acctNum}
+            readOnly
           />
         </div>
       </div>
+
       <div class="row mb-4">
         <label for="phoneLabel" class="form-label">
           Bank
@@ -48,10 +65,11 @@ const Step2 = ({ acctName, handleChange, acctNum, bank }) => {
             <select
               name="bank"
               class="js-select form-select"
-              data-placeholder={bank || "Bank"}
-              onChange={handleChange("bank")}
+              data-placeholder="Bank"
+              value={bank}
+              readOnly
             >
-              <option value={bank || ""}></option>
+              <option value=""></option>
               <option value="044">Access Bank</option>
               <option value="063">Access Bank (Diamond)</option>
               <option value="035A">ALAT by WEMA</option>
@@ -88,8 +106,8 @@ const Step2 = ({ acctName, handleChange, acctNum, bank }) => {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
-export default Step2;
+export default Step3;

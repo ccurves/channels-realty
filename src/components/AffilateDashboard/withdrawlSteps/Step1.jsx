@@ -1,6 +1,6 @@
 import React from "react";
 
-const Step1 = () => {
+const Step1 = ({ checkBalance, amount }) => {
   return (
     <div class="row mb-4">
       <label for="phoneLabel" class=" form-label">
@@ -11,10 +11,9 @@ const Step1 = () => {
         <input
           type="text"
           class="js-input-mask form-control"
-          name="acctNum"
-          id="emailLabel"
-          placeholder="Enter Amount"
-          //   onChange={handleChange("acctNum")}
+          name="wAmount"
+          placeholder={amount || "Enter Amount"}
+          onChange={checkBalance}
           required
         />
       </div>

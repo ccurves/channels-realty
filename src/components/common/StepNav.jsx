@@ -1,6 +1,13 @@
 import React from "react";
 
 const StepNav = ({ step, setStep, data }) => {
+  const handleClick = (id) => {
+    let num = step.match(/(\d+|[^\d]+)/g).join(",");
+
+    if (parseInt(num[5]) > id) {
+      setStep(`step${id}`);
+    }
+  };
   return (
     <ul
       id="addUserStepFormProgress"
@@ -12,10 +19,7 @@ const StepNav = ({ step, setStep, data }) => {
             step === `step${item.id}` ? "step-item active focus" : "step-item "
           }
         >
-          <a
-            class="step-content-wrapper"
-            onClick={() => setStep(`step${item.id}`)}
-          >
+          <a class="step-content-wrapper" onClick={() => handleClick(item.id)}>
             <span class="step-icon step-icon-soft-dark">{item.id}</span>
             <div class="step-content">
               <span class="step-title">{item.title}</span>

@@ -91,8 +91,7 @@ const Login = () => {
             <div class="d-grid mb-4">
               <GoogleButton />
             </div>
-
-            <span class="divider-center text-muted mb-4"></span>
+            <span class="divider-center text-muted mb-4">OR</span>
           </div>
 
           <div class="mb-4">
