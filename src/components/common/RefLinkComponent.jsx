@@ -15,7 +15,7 @@ const RefLinkComponent = () => {
         id="referralCode"
         type="text"
         class="form-control"
-        readonly
+        readOnly
         value={`${host}/sign-up?refCode=${isAuth().refLink}`}
       />
       <div class="input-group-append">

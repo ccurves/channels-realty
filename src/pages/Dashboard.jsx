@@ -11,13 +11,14 @@ import Navbar from "../components/UserDashboard/Navbar";
 import Overview from "../components/UserDashboard/Overview";
 import PendingReg from "../components/UserDashboard/PendingReg";
 import Profile from "../components/UserDashboard/Profile";
+import Referrals from "../components/UserDashboard/Referrals";
 import Sidebar from "../components/UserDashboard/Sidebar";
 import Task from "../components/UserDashboard/Task";
 import { getCookie, isAuth, updateUser } from "../helpers/auth";
 
 const Dashboard = ({ page }) => {
   useEffect(() => {
-    // console.log(isAuth());
+    console.log(isAuth());
   }, []);
 
   return (
@@ -53,6 +54,7 @@ const Dashboard = ({ page }) => {
                       {page === "profile" && <Profile />}
                       {page === "apply" && <Application />}
                       {page === "withdraw" && <Withdraw />}
+                      {page === "referrals" && <Referrals />}
                     </div>
                   )}
                 </div>

@@ -56,6 +56,7 @@ const Activate = () => {
 
   const handlePayment = () => {
     setLoading(true);
+    console.log(process.env.REACT_APP_REG_AMOUNT);
     handleFlutterPayment({
       callback: (response) => {
         console.log(response);
@@ -118,7 +119,7 @@ const Activate = () => {
   const config = {
     public_key: "FLWPUBK_TEST-4283c3de42d6688f5992e108956eaf60-X",
     tx_ref: Date.now(),
-    amount: "20000",
+    amount: process.env.REACT_APP_REG_AMOUNT,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {

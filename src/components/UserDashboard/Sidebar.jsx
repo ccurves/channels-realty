@@ -3,6 +3,7 @@ import {
   AssignmentRounded,
   GridViewRounded,
   ManageAccountsRounded,
+  SupervisorAccountRounded,
   SupportRounded,
   Verified,
 } from "@mui/icons-material";
@@ -170,6 +171,28 @@ const Sidebar = ({ page }) => {
                         }}
                       />
                       <span class="nav-link-title">Withdraw</span>
+                    </Link>
+                  </div>
+                )}
+
+                {isAuth().role === "affilate" && (
+                  <div class="nav-item">
+                    <Link
+                      to="/affilate/referrals"
+                      class={
+                        page === "referrals" ? "nav-link active" : "nav-link "
+                      }
+                      role="button"
+                    >
+                      {" "}
+                      <SupervisorAccountRounded
+                        sx={{
+                          color: "#667085",
+                          width: "22px",
+                          margin: "0 7px",
+                        }}
+                      />
+                      <span class="nav-link-title">Referrals</span>
                     </Link>
                   </div>
                 )}

@@ -6,13 +6,13 @@ import UserModal from "./UserModal";
 
 const Affilates = () => {
   const [affilates, setAffilates] = useState([]);
-  const authToken = getCookie("token");
+  const token = getCookie("token");
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/admin/affilates`, {
         headers: {
-          token: authToken,
+          token: `Bearer ${token}`,
         },
       })
       .then((res) => {

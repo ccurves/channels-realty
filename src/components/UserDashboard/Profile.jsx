@@ -183,6 +183,41 @@ const Profile = () => {
             </form>
           </div>
         </div>
+        <div id="deleteAccountSection" class="card mt-3">
+          <div class="card-header">
+            <h4 class="card-title">Delete your account</h4>
+          </div>
+
+          <div class="card-body">
+            <p class="card-text">
+              When you delete your account, you lose access to Channels Realty
+              account services, and we permanently delete your data.
+            </p>
+
+            <div class="mb-4">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="deleteAccountCheckbox"
+                />
+                <label class="form-check-label" for="deleteAccountCheckbox">
+                  Confirm that I want to delete my account.
+                </label>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3">
+              <a class="btn btn-white" href="#">
+                Learn more
+              </a>
+              <button type="submit" class="btn btn-danger">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <SideCardRef />
     </>

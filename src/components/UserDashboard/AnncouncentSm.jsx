@@ -14,7 +14,8 @@ const AnncouncentSm = () => {
         <div class="card-body  py-10">
           <div className="">
             <h3 class="text-light">
-              Become a Land Owner with as low as NGN20,000
+              Become a Land Owner with as low as NGN
+              {parseInt(process.env.REACT_APP_REG_AMOUNT).toLocaleString()}
             </h3>
           </div>
         </div>

@@ -6,12 +6,12 @@ import Users from "./Users";
 
 const Overview = () => {
   const [users, setusers] = useState([]);
-  const authToken = getCookie("token");
+  const token = getCookie("token");
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/admin/users`, {
         headers: {
-          token: authToken,
+          token: `Bearer ${token}`,
         },
       })
       .then((res) => {

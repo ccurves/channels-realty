@@ -50,9 +50,11 @@ const Users = ({ users }) => {
         return (
           <div class="d-flex align-items-center">
             <span class="fs-5 me-2">
-              {getPercent(
-                params.row.refferals.length,
-                process.env.REACT_APP_USER_GOAL
+              {Math.round(
+                getPercent(
+                  params.row.refferals.length,
+                  process.env.REACT_APP_USER_GOAL
+                )
               )}
               %
             </span>

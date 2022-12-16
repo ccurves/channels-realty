@@ -1,4 +1,4 @@
-import { GridViewRounded } from "@mui/icons-material";
+import { GridViewRounded, LandscapeRounded } from "@mui/icons-material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { isAuth } from "../../helpers/auth";
@@ -78,6 +78,18 @@ const Sidebar = ({ page }) => {
                       sx={{ color: "#667085", width: "22px", margin: "0 7px" }}
                     />
                     <span class="nav-link-title">Overview</span>
+                  </Link>
+                </div>
+                <div class="nav-item">
+                  <Link
+                    to="/admin/land-claims"
+                    class={page === "aff-req" ? "nav-link active" : "nav-link "}
+                    role="button"
+                  >
+                    <LandscapeRounded
+                      sx={{ color: "#667085", width: "22px", margin: "0 7px" }}
+                    />
+                    <span class="nav-link-title">Land Request</span>
                   </Link>
                 </div>
                 <div class="nav-item">

@@ -16,7 +16,8 @@ const Anncouncement = ({ img }) => {
               class="text-light page-title"
               style={{ left: "20px", fontWeight: 500 }}
             >
-              Become a Land Owner with as low as NGN20,000
+              Become a Land Owner with as low as NGN
+              {parseInt(process.env.REACT_APP_REG_AMOUNT).toLocaleString()}
             </h1>
           </div>
         </div>

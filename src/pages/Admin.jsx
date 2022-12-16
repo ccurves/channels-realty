@@ -1,13 +1,18 @@
 import React from "react";
+import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import Affilates from "../components/Admin/Affilates";
 import Header from "../components/Admin/Header";
+import LandClaims from "../components/Admin/LandClaims";
 import Overview from "../components/Admin/Overview";
 import Sidebar from "../components/Admin/Sidebar";
 import Navbar from "../components/UserDashboard/Navbar";
 import { isAuth } from "../helpers/auth";
 
 const Admin = ({ page }) => {
+  useEffect(() => {
+    // console.log(isAuth());
+  }, []);
   return (
     <>
       {!isAuth() ? (
@@ -33,6 +38,7 @@ const Admin = ({ page }) => {
                   <div className="sidebar-detached-content mt-3 mt-lg-0 row">
                     {page === "index" && <Overview />}
                     {page === "aff-req" && <Affilates />}
+                    {page === "land-claims" && <LandClaims />}
                   </div>
                 </div>
               </main>

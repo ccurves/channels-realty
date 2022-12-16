@@ -36,10 +36,18 @@ function App() {
             path="/affilate/withdraw"
             element={<Dashboard page="withdraw" />}
           />
+          <Route
+            path="/affilate/referrals"
+            element={<Dashboard page="referrals" />}
+          />
           <Route path="/admin" element={<Admin page="index" />} />
           <Route
             path="/admin/affilate-requests"
             element={<Admin page="aff-req" />}
+          />
+          <Route
+            path="/admin/land-claims"
+            element={<Admin page="land-claims" />}
           />
           <Route path="*" element={<Error404 />} />
           <Route path="/auth/failed" element={<Error500 />} />
