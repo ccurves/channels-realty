@@ -137,7 +137,7 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div id="accountType" class="row mb-4">
+              {/* <div id="accountType" class="row mb-4">
                 <label class="col-sm-3 col-form-label form-label">
                   Account type
                 </label>
@@ -173,7 +173,7 @@ const Profile = () => {
                     </label>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div class="d-flex justify-content-start">
                 <button type="submit" class="btn btn-primary">
