@@ -1,5 +1,7 @@
+import axios from "axios";
 import cookie from "js-cookie";
 import ls from "localstorage-slim";
+import toast from "react-hot-toast";
 
 //Set in Cookie
 export const setCookie = (key, value) => {
@@ -83,4 +85,23 @@ export const updateUser = (response) => {
     setLocalStorage("user", data);
     // localStorage.setItem("user", JSON.stringify(auth));
   }
+};
+
+export const checkToken = async () => {
+  const token = getCookie("token");
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/user/isAuth`, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      toast.error("Your session has expired. Please log in again.");
+      signout(() => {
+        window.location.replace("/login");
+      });
+    });
 };

@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 import AffilateOverview from "../components/AffilateDashboard/AffilateOverview";
 import Application from "../components/AffilateDashboard/Application";
@@ -14,28 +12,10 @@ import Profile from "../components/UserDashboard/Profile";
 import Referrals from "../components/UserDashboard/Referrals";
 import Sidebar from "../components/UserDashboard/Sidebar";
 import Task from "../components/UserDashboard/Task";
-import { getCookie, isAuth, signout, updateUser } from "../helpers/auth";
+import { checkToken, isAuth } from "../helpers/auth";
 
 const Dashboard = ({ page }) => {
   useEffect(() => {
-    const checkToken = async () => {
-      const token = getCookie("token");
-      axios
-        .post(`${process.env.REACT_APP_API_URL}/user/isAuth`, {
-          headers: {
-            token: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          toast.info(err.response.data);
-          signout(() => {
-            window.location.replace("/login");
-          });
-        });
-    };
     checkToken();
   }, []);
 

@@ -2,6 +2,7 @@ import {
   AccountBalanceWalletRounded,
   AssignmentRounded,
   GridViewRounded,
+  LandscapeRounded,
   ManageAccountsRounded,
   SupervisorAccountRounded,
   SupportRounded,
@@ -193,6 +194,27 @@ const Sidebar = ({ page }) => {
                         }}
                       />
                       <span class="nav-link-title">Referrals</span>
+                    </Link>
+                  </div>
+                )}
+                {isAuth().role === "affilate" && (
+                  <div class="nav-item">
+                    <Link
+                      to="/affilate/referrals"
+                      class={
+                        page === "referrals" ? "nav-link active" : "nav-link "
+                      }
+                      role="button"
+                    >
+                      {" "}
+                      <LandscapeRounded
+                        sx={{
+                          color: "#667085",
+                          width: "22px",
+                          margin: "0 7px",
+                        }}
+                      />
+                      <span class="nav-link-title">Land</span>
                     </Link>
                   </div>
                 )}
