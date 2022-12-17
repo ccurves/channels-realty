@@ -16,7 +16,7 @@ import { checkToken, isAuth } from "../helpers/auth";
 
 const Dashboard = ({ page }) => {
   useEffect(() => {
-    checkToken();
+    // checkToken();
   }, []);
 
   return (
