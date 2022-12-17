@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { withdrawNav } from "../../data";
 import { getCookie, isAuth } from "../../helpers/auth";
@@ -44,8 +44,7 @@ const WithdrawModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const authToken = getCookie("token");
-    console.log(authToken);
+    const token = getCookie("token");
 
     if (amount !== 0 && acctName && acctNum && bank) {
       axios
@@ -61,7 +60,7 @@ const WithdrawModal = () => {
           },
           {
             headers: {
-              token: authToken,
+              token: `Bearer ${token}`,
             },
           }
         )
@@ -92,7 +91,7 @@ const WithdrawModal = () => {
     if (acctNum && bank) {
       axios
         .get(
-          `https://api.paystack.co/bank/resolve?account_number=${acctNum}&bank_code=${bank}`,
+          `https://api.paystack.co/bank/resolve?account_number=${acctNum}&bank_code=${bank}&currency=NGN`,
           {
             headers: {
               Authorization: `Bearer ${process.env.REACT_APP_PAYSTACK_SECRET_KEY}`,

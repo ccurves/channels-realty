@@ -14,11 +14,29 @@ import Profile from "../components/UserDashboard/Profile";
 import Referrals from "../components/UserDashboard/Referrals";
 import Sidebar from "../components/UserDashboard/Sidebar";
 import Task from "../components/UserDashboard/Task";
-import { getCookie, isAuth, updateUser } from "../helpers/auth";
+import { getCookie, isAuth, signout, updateUser } from "../helpers/auth";
 
 const Dashboard = ({ page }) => {
   useEffect(() => {
-    console.log(isAuth());
+    const checkToken = async () => {
+      const token = getCookie("token");
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/user/isAuth`, {
+          headers: {
+            token: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          toast.info(err.response.data);
+          signout(() => {
+            window.location.replace("/login");
+          });
+        });
+    };
+    checkToken();
   }, []);
 
   return (

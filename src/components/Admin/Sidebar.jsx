@@ -94,6 +94,18 @@ const Sidebar = ({ page }) => {
                 </div>
                 <div class="nav-item">
                   <Link
+                    to="/admin/withdrawal-reqs"
+                    class={page === "aff-req" ? "nav-link active" : "nav-link "}
+                    role="button"
+                  >
+                    <LandscapeRounded
+                      sx={{ color: "#667085", width: "22px", margin: "0 7px" }}
+                    />
+                    <span class="nav-link-title">Withdrawal Requests</span>
+                  </Link>
+                </div>
+                <div class="nav-item">
+                  <Link
                     to="/admin/affilate-requests"
                     class={page === "aff-req" ? "nav-link active" : "nav-link "}
                     role="button"
