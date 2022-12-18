@@ -200,10 +200,8 @@ const Sidebar = ({ page }) => {
                 {isAuth().role === "affilate" && (
                   <div class="nav-item">
                     <Link
-                      to="/affilate/referrals"
-                      class={
-                        page === "referrals" ? "nav-link active" : "nav-link "
-                      }
+                      to="/affilate/land"
+                      class={page === "land" ? "nav-link active" : "nav-link "}
                       role="button"
                     >
                       {" "}
