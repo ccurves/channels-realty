@@ -134,6 +134,7 @@ const Activate = () => {
   };
 
   const handleFlutterPayment = useFlutterwave(config);
+
   return (
     <main id="content" role="main" class="main">
       <div class="content container-fluid">
