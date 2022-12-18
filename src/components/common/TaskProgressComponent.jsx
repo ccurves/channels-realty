@@ -48,7 +48,7 @@ const TaskProgressComponent = ({ sqm, perc }) => {
             <div className="col-4 ">
               {" "}
               {isAuth().refferals.length >
-              process.env.REACT_APP_USER_GOAL / Number(perc) ? (
+              process.env.REACT_APP_AFFILATE_GOAL / Number(perc) ? (
                 <button
                   class="btn btn-primary pe-lg-7 ps-lg-7"
                   data-bs-toggle="modal"
