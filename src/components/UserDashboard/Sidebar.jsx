@@ -144,7 +144,9 @@ const Sidebar = ({ page }) => {
                 <div class="nav-item">
                   <Link
                     to="/profile"
-                    class={page === "profile" ? "nav-link active" : "nav-link "}
+                    class={
+                      page === "profile" ? "nav-link active " : "nav-link "
+                    }
                     role="button"
                   >
                     {" "}

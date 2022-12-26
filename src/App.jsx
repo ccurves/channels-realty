@@ -1,9 +1,8 @@
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EmailSent from "./components/Auth/EmailSent";
 import EmailVerify from "./components/Auth/EmailVerify";
 import GoogleSuccess from "./components/Auth/GoogleSuccess";
-import { isAuth } from "./helpers/auth";
 import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 // import ComingSoon from "./pages/ComingSoon";
@@ -40,6 +39,7 @@ function App() {
             path="/affilate/referrals"
             element={<Dashboard page="referrals" />}
           />
+          <Route path="/affilate/land" element={<Dashboard page="land" />} />
           <Route path="/admin" element={<Admin page="index" />} />
           <Route
             path="/admin/affilate-requests"
@@ -48,6 +48,10 @@ function App() {
           <Route
             path="/admin/land-claims"
             element={<Admin page="land-claims" />}
+          />
+          <Route
+            path="/admin/withdrawal-reqs"
+            element={<Admin page="withdrawal-reqs" />}
           />
           <Route path="*" element={<Error404 />} />
           <Route path="/auth/failed" element={<Error500 />} />

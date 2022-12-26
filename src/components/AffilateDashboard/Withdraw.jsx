@@ -1,10 +1,35 @@
+import axios from "axios";
 import React from "react";
-import { isAuth } from "../../helpers/auth";
+import { useEffect } from "react";
+import { useState } from "react";
+import { fetchUser, getCookie, isAuth } from "../../helpers/auth";
 import AnncouncentSm from "../UserDashboard/AnncouncentSm";
 import Transcations from "./Transcations";
 import WithdrawModal from "./WithdrawModal";
 
 const Withdraw = () => {
+  const [transactions, setTransactions] = useState([]);
+  const token = getCookie("token");
+
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/user/transactions/${isAuth()._id}`,
+        {
+          headers: {
+            token: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setTransactions(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    fetchUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="row">
       <div className="col-lg-8">
@@ -20,7 +45,7 @@ const Withdraw = () => {
                     >
                       <h6 class="card-subtitle">Refferal Bouns</h6>
                       <span class="d-block display-5 text-dark mb-3 me-3 mt-3">
-                        NGN{isAuth().wallet.refBouns}
+                        NGN{isAuth().wallet.refBouns.toLocaleString()}.00
                       </span>
                       <div class="d-flex justify-content-start d-print-none gap-3">
                         <button
@@ -40,7 +65,7 @@ const Withdraw = () => {
         </div>
         <div className="card mt-4">
           <div className="card-body">
-            <Transcations />
+            <Transcations transactions={transactions} />
           </div>
         </div>
       </div>

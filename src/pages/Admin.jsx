@@ -6,6 +6,7 @@ import Header from "../components/Admin/Header";
 import LandClaims from "../components/Admin/LandClaims";
 import Overview from "../components/Admin/Overview";
 import Sidebar from "../components/Admin/Sidebar";
+import WithdrawalReqs from "../components/Admin/WithdrawalReqs";
 import Navbar from "../components/UserDashboard/Navbar";
 import { isAuth } from "../helpers/auth";
 
@@ -39,6 +40,7 @@ const Admin = ({ page }) => {
                     {page === "index" && <Overview />}
                     {page === "aff-req" && <Affilates />}
                     {page === "land-claims" && <LandClaims />}
+                    {page === "withdrawal-reqs" && <WithdrawalReqs />}
                   </div>
                 </div>
               </main>

@@ -18,6 +18,7 @@ const StepNav = ({ step, setStep, data }) => {
           class={
             step === `step${item.id}` ? "step-item active focus" : "step-item "
           }
+          key={item.id}
         >
           <a class="step-content-wrapper" onClick={() => handleClick(item.id)}>
             <span class="step-icon step-icon-soft-dark">{item.id}</span>

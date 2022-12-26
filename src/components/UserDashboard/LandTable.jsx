@@ -1,14 +1,14 @@
 import { DateTime } from "luxon";
 import React from "react";
 
-const Transcations = ({ transactions }) => {
+const LandTable = ({ claims }) => {
   return (
     <div class="table-responsive datatable-custom ">
-      <h6 class="card-subtitle mb-5">Transaction History</h6>
-      {transactions.length === 0 ? (
+      <h6 class="card-subtitle mb-5">Land Requests</h6>
+      {claims.length === 0 ? (
         <div class="row justify-content-sm-center text-center py-10">
           <div class="col-sm-7 col-md-5">
-            <p>No transactions yet!</p>
+            <p>You haven't made any claims</p>
           </div>
         </div>
       ) : (
@@ -36,45 +36,46 @@ const Transcations = ({ transactions }) => {
           <thead class="thead-light">
             <tr>
               <th>Date</th>
-              <th>Payment status</th>
-              <th>Payment method</th>
+              <th>Status</th>
+              <th>SQM</th>
             </tr>
           </thead>
 
           <tbody>
-            {transactions.map((transaction) => (
-              <tr key={transaction._id}>
+            {claims.map((claim) => (
+              <tr key={claim._id}>
                 <td>
                   {" "}
-                  {DateTime.fromISO(transaction.createdAt).toLocaleString(
+                  {DateTime.fromISO(claim.createdAt).toLocaleString(
                     DateTime.DATETIME_MED
                   )}
                 </td>
 
                 <td>
-                  {transaction.status === "Paid" && (
+                  {/* <span class="badge bg-soft-success text-success">
+                
+                </span> */}
+                  {claim.status === "Completed" && (
                     <span class="badge bg-soft-success text-success">
                       <span class="legend-indicator bg-success"></span>{" "}
-                      {transaction.status}
+                      {claim.status}
                     </span>
                   )}
-                  {transaction.status === "Pending" && (
+                  {claim.status === "Pending" && (
                     <span class="badge bg-soft-warning text-warning">
                       <span class="legend-indicator bg-warning"></span>{" "}
-                      {transaction.status}
+                      {claim.status}
                     </span>
                   )}
-                  {transaction.status === "Failed" ||
-                  transaction.status === "Rejected" ? (
-                    <span class="badge bg-soft-danger text-danger">
-                      <span class="legend-indicator bg-danger"></span>{" "}
-                      {transaction.status}
-                    </span>
-                  ) : (
-                    ""
-                  )}
+                  {claim.status === "Not processed" ||
+                    (claim.status === "Rejected" && (
+                      <span class="badge bg-soft-danger text-danger">
+                        <span class="legend-indicator bg-danger"></span>{" "}
+                        {claim.status}
+                      </span>
+                    ))}
                 </td>
-                <td>Bank Transfer</td>
+                <td>{claim.sqft} sqm</td>
               </tr>
             ))}
           </tbody>
@@ -84,4 +85,4 @@ const Transcations = ({ transactions }) => {
   );
 };
 
-export default Transcations;
+export default LandTable;

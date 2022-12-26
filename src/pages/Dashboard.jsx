@@ -5,6 +5,7 @@ import Application from "../components/AffilateDashboard/Application";
 import Withdraw from "../components/AffilateDashboard/Withdraw";
 import Activate from "../components/UserDashboard/Activate";
 import Header from "../components/UserDashboard/Header";
+import Lands from "../components/UserDashboard/Lands";
 import Navbar from "../components/UserDashboard/Navbar";
 import Overview from "../components/UserDashboard/Overview";
 import PendingReg from "../components/UserDashboard/PendingReg";
@@ -36,7 +37,7 @@ const Dashboard = ({ page }) => {
                 <Header />
                 <div class="content container" style={{ marginTop: "-20rem" }}>
                   <Sidebar page={page} />
-                  {isAuth().regStatus === "Pending" ? (
+                  {isAuth().regStatus === "Pending" && page !== "land" ? (
                     <div className="sidebar-detached-content mt-3 mt-lg-0 row">
                       <PendingReg />
                     </div>
@@ -53,6 +54,7 @@ const Dashboard = ({ page }) => {
                       {page === "apply" && <Application />}
                       {page === "withdraw" && <Withdraw />}
                       {page === "referrals" && <Referrals />}
+                      {page === "land" && <Lands />}
                     </div>
                   )}
                 </div>

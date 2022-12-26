@@ -1,4 +1,9 @@
-import { GridViewRounded, LandscapeRounded } from "@mui/icons-material";
+import {
+  GridViewRounded,
+  Groups2Rounded,
+  LandscapeRounded,
+  PaymentsRounded,
+} from "@mui/icons-material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { isAuth } from "../../helpers/auth";
@@ -83,7 +88,9 @@ const Sidebar = ({ page }) => {
                 <div class="nav-item">
                   <Link
                     to="/admin/land-claims"
-                    class={page === "aff-req" ? "nav-link active" : "nav-link "}
+                    class={
+                      page === "land-claims" ? "nav-link active" : "nav-link "
+                    }
                     role="button"
                   >
                     <LandscapeRounded
@@ -95,10 +102,14 @@ const Sidebar = ({ page }) => {
                 <div class="nav-item">
                   <Link
                     to="/admin/withdrawal-reqs"
-                    class={page === "aff-req" ? "nav-link active" : "nav-link "}
+                    class={
+                      page === "withdrawal-reqs"
+                        ? "nav-link active"
+                        : "nav-link "
+                    }
                     role="button"
                   >
-                    <LandscapeRounded
+                    <PaymentsRounded
                       sx={{ color: "#667085", width: "22px", margin: "0 7px" }}
                     />
                     <span class="nav-link-title">Withdrawal Requests</span>
@@ -110,7 +121,7 @@ const Sidebar = ({ page }) => {
                     class={page === "aff-req" ? "nav-link active" : "nav-link "}
                     role="button"
                   >
-                    <GridViewRounded
+                    <Groups2Rounded
                       sx={{ color: "#667085", width: "22px", margin: "0 7px" }}
                     />
                     <span class="nav-link-title">Affilate Request</span>

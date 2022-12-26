@@ -105,3 +105,19 @@ export const checkToken = async () => {
       });
     });
 };
+
+export const fetchUser = async () => {
+  const token = getCookie("token");
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/user/${isAuth()._id}`, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      updateUser(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
