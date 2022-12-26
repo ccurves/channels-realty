@@ -1,10 +1,13 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
+import Confetti from "react-dom-confetti";
 import toast from "react-hot-toast";
 import icon from "../../assets/illustrations/oc-maintenance.svg";
 import { getCookie, isAuth, updateUser } from "../../helpers/auth";
 
 const ClaimModal = ({ sqm }) => {
+  const [active, setActive] = useState(false);
+
   const handleClaim = async () => {
     const token = getCookie("token");
     axios
@@ -21,6 +24,7 @@ const ClaimModal = ({ sqm }) => {
         }
       )
       .then((res) => {
+        setActive(true);
         updateUser(res.data.user, () => {
           toast.success(res.data.message);
         });
@@ -31,6 +35,20 @@ const ClaimModal = ({ sqm }) => {
         console.log(err);
         toast.error(err.response.data.error);
       });
+  };
+
+  const config = {
+    angle: 90,
+    spread: 360,
+    startVelocity: "27",
+    elementCount: "81",
+    dragFriction: 0.12,
+    duration: "2690",
+    stagger: "6",
+    width: "24px",
+    height: "19px",
+    perspective: "561px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
   };
   return (
     <div
@@ -70,6 +88,7 @@ const ClaimModal = ({ sqm }) => {
               </p>
             </div>
           </div>
+          <Confetti active={active} config={config} />
 
           <div class="modal-footer">
             <button type="button" class="btn btn-white" data-bs-dismiss="modal">

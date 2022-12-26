@@ -55,7 +55,7 @@ const LandTable = ({ claims }) => {
                   {/* <span class="badge bg-soft-success text-success">
                 
                 </span> */}
-                  {claim.status === "Completed" && (
+                  {claim.status === "Approved" && (
                     <span class="badge bg-soft-success text-success">
                       <span class="legend-indicator bg-success"></span>{" "}
                       {claim.status}

@@ -16,18 +16,21 @@ const Lands = () => {
   const token = getCookie("token");
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/user/claims/${isAuth()._id}`, {
-        headers: {
-          token: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setClaims(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const fetchLands = () => {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/user/claims/${isAuth()._id}`, {
+          headers: {
+            token: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setClaims(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    fetchLands();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
