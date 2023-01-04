@@ -15,7 +15,7 @@ import Sidebar from "../components/UserDashboard/Sidebar";
 import Task from "../components/UserDashboard/Task";
 import { checkToken, isAuth } from "../helpers/auth";
 
-const Dashboard = ({ page }) => {
+const Dashboard = ({ page, show }) => {
   useEffect(() => {
     // checkToken();
   }, []);
@@ -37,7 +37,7 @@ const Dashboard = ({ page }) => {
                 <Header />
                 <div class="content container" style={{ marginTop: "-20rem" }}>
                   <Sidebar page={page} />
-                  {isAuth().regStatus === "Pending" && page !== "land" ? (
+                  {isAuth().regStatus === "Pending" && show !== "true" ? (
                     <div className="sidebar-detached-content mt-3 mt-lg-0 row">
                       <PendingReg />
                     </div>

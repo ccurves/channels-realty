@@ -33,13 +33,16 @@ function App() {
           <Route path="/activate/:token" element={<EmailVerify />} />
           <Route
             path="/affilate/withdraw"
-            element={<Dashboard page="withdraw" />}
+            element={<Dashboard page="withdraw" show="true" />}
           />
           <Route
             path="/affilate/referrals"
             element={<Dashboard page="referrals" />}
           />
-          <Route path="/affilate/land" element={<Dashboard page="land" />} />
+          <Route
+            path="/affilate/land"
+            element={<Dashboard page="land" show="true" />}
+          />
           <Route path="/admin" element={<Admin page="index" />} />
           <Route
             path="/admin/affilate-requests"
